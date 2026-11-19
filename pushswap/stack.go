@@ -56,3 +56,35 @@ func (s *Stack) Swap() {
 	s.items[n-2] = temp
 }
 
+func (s *Stack) Rotate() {
+	n := len(s.items)
+	if n < 2 {
+		return
+	}
+	haut := s.items[n-1]
+	for i := n - 1; i > 0; i-- {
+		s.items[i] = s.items[i-1]
+	}
+	s.items[0] = haut
+}
+
+func (s *Stack) ReverseRotate() {
+	n := len(s.items)
+	if n < 2 {
+		return
+	}
+	bas := s.items[0]
+	for i := 0; i < n-1; i++ {
+		s.items[i] = s.items[i+1]
+	}
+	s.items[n-1] = bas
+}
+
+func (s *Stack) IsSortedFromTop() bool {
+	for i := 0; i < len(s.items)-1; i++ {
+		if s.items[i] < s.items[i+1] {
+			return false
+		}
+	}
+	return true
+}
