@@ -27,3 +27,32 @@ func (s *Stack) Top() (int, error) {
 	}
 	return s.items[len(s.items)-1], nil
 }
+
+func (s *Stack) Len() int {
+	return len(s.items)
+}
+
+func (s *Stack) IsEmpty() bool {
+	return len(s.items) == 0
+}
+
+func (s *Stack) Get(i int) int {
+	return s.items[len(s.items)-1-i]
+}
+
+func (s *Stack) Copy() Stack {
+	nouveau := make([]int, len(s.items))
+	copy(nouveau, s.items)
+	return Stack{items: nouveau}
+}
+
+func (s *Stack) Swap() {
+	n := len(s.items)
+	if n < 2 {
+		return
+	}
+	temp := s.items[n-1]
+	s.items[n-1] = s.items[n-2]
+	s.items[n-2] = temp
+}
+
